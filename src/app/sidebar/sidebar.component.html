@@ -1,13 +1,13 @@
 <nav>
   <ul>
     <li>
-      <a routerLink="">
+      <a routerLink="" [class.activated]="currentUrl == '/'">
         <!-- these icons come from material.io -->
         <i class="material-icons">supervised_user_circle</i>
       </a>
     </li>
     <li>
-      <a routerLink="posts">
+      <a routerLink="posts" [class.activated]="currentUrl == '/posts'">
         <i class="material-icons">message</i>
       </a>
     </li>
