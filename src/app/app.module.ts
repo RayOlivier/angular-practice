@@ -9,6 +9,7 @@ import { UsersComponent } from "./users/users.component";
 import { DetailsComponent } from "./details/details.component";
 
 import { HttpClientModule } from "@angular/common/http";
+import { ToDoListComponent } from './to-do-list/to-do-list.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { HttpClientModule } from "@angular/common/http";
     SidebarComponent,
     PostsComponent,
     UsersComponent,
-    DetailsComponent
+    DetailsComponent,
+    ToDoListComponent
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],
