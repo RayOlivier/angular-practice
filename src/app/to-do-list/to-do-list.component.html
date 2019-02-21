@@ -1,21 +1,25 @@
 <div class="container">
-  <form>
-    <div class="form-group">
-      <h1 class="text-center text-primary">Todo App</h1>
-      <div class="input-group-prepend">
-        <input
-          type="text"
-          class="form-control"
-          placeholder="Add task..."
-          name="todo"
-          ngModel
-        />
-        <input #inputValue type="text" name="text" ngModel />
-        <p>{{ inputValue.value }}</p>
-        <button class="input-group-text">Add</button>
-      </div>
+  <div class="form-group">
+    <h1 class="text-center text-primary">Todo App</h1>
+    <ul>
+      <li *ngFor="let task of taskList">
+        {{ task }}
+        <button (click)="deleteTask(task)">delete</button>
+      </li>
+    </ul>
+    <div class="input-group-prepend">
+      <input
+        #inputValue
+        ngModel
+        placeholder="Add
+        task..."
+      />
+      <p>{{ inputValue.value }}</p>
+      <button class="input-group-text" (click)="addTask(inputValue.value)">
+        Add
+      </button>
     </div>
-  </form>
+  </div>
 </div>
 
 <!-- these are bootstrap classes -->
