@@ -12,6 +12,7 @@ export class ToDoListComponent implements OnInit {
   taskList: String[];
   // taskList;
   subscription;
+  inputText: string;
 
   constructor(
     private ngRedux: NgRedux<IAppState>,
@@ -27,9 +28,14 @@ export class ToDoListComponent implements OnInit {
     console.log("taskList", this.taskList);
   }
 
+  clear(): void {
+    this.inputText = "";
+  }
+
   addTask(input: String): void {
     // this.taskList.push(input);
     this.ngRedux.dispatch(this.actions.addTask(input));
+    this.clear();
   }
 
   deleteTask(task: String): void {

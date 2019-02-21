@@ -9,13 +9,12 @@
     </ul>
     <div class="input-group-prepend">
       <input
-        #inputValue
-        ngModel
+        [(ngModel)]="inputText"
         placeholder="Add
         task..."
       />
-      <p>{{ inputValue.value }}</p>
-      <button class="input-group-text" (click)="addTask(inputValue.value)">
+      <p>{{ inputText }}</p>
+      <button class="input-group-text" (click)="addTask(inputText)">
         Add
       </button>
     </div>
