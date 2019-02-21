@@ -1,4 +1,7 @@
+import { ToDoListActions } from "./../app.actions";
 import { Component, OnInit } from "@angular/core";
+import { NgRedux, select } from "@angular-redux/store"; // <- New
+import { IAppState } from "src/store";
 
 @Component({
   selector: "app-to-do-list",
@@ -6,23 +9,38 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./to-do-list.component.scss"]
 })
 export class ToDoListComponent implements OnInit {
-  taskList: String[] = ["Do laundry", "Learn angular"];
-  myTask: String = this.taskList[0];
+  taskList: String[];
+  // taskList;
+  subscription;
 
-  constructor() {}
-
-  ngOnInit() {}
+  constructor(
+    private ngRedux: NgRedux<IAppState>,
+    private actions: ToDoListActions
+  ) {
+    this.subscription = ngRedux
+      .select<String[]>("taskList")
+      .subscribe((newList) => (this.taskList = newList));
+    // this.taskList = ngRedux.getState().taskList;
+  }
+  // @select() taskList;
+  ngOnInit() {
+    console.log("taskList", this.taskList);
+  }
 
   addTask(input: String): void {
-    console.log("input", input);
-    this.taskList.push(input);
+    // this.taskList.push(input);
+    this.ngRedux.dispatch(this.actions.addTask(input));
   }
 
   deleteTask(task: String): void {
-    console.log("task", task);
-    this.taskList = this.taskList.filter((e) => {
-      console.log("e", e);
-      return e !== task;
-    });
+    // this.taskList = this.taskList.filter((e) => {
+    //   return e !== task;
+    // });
+
+    this.ngRedux.dispatch(this.actions.deleteTask(task));
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe(); // <- New
   }
 }
