@@ -1,5 +1,5 @@
 import { ToDoListActions } from "./../app.actions";
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, OnDestroy } from "@angular/core";
 import { NgRedux, select } from "@angular-redux/store"; // <- New
 import { IAppState } from "src/store";
 
@@ -8,7 +8,7 @@ import { IAppState } from "src/store";
   templateUrl: "./to-do-list.component.html",
   styleUrls: ["./to-do-list.component.scss"]
 })
-export class ToDoListComponent implements OnInit {
+export class ToDoListComponent implements OnInit, OnDestroy {
   taskList: String[];
   // taskList;
   subscription;

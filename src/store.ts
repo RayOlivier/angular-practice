@@ -7,7 +7,7 @@ import thunk from "redux-thunk";
 
 export interface IAppState {
   taskList: String[];
-  pokemon: Object;
+  pokemon: Array<Object>;
 }
 
 interface Action {
@@ -17,7 +17,7 @@ interface Action {
 
 export const INITIAL_STATE: IAppState = {
   taskList: ["Do laundry", "Learn angular"],
-  pokemon: {}
+  pokemon: []
 };
 
 export function rootReducer(lastState: IAppState, action: Action): IAppState {
@@ -34,7 +34,8 @@ export function rootReducer(lastState: IAppState, action: Action): IAppState {
         pokemon: lastState.pokemon
       };
     case ToDoListActions.GET_POKEMON:
-      return { taskList: lastState.taskList, pokemon: action.payload };
+      console.log("action.payload", action.payload.results);
+      return { taskList: lastState.taskList, pokemon: action.payload.results };
   }
   return lastState;
 }

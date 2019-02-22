@@ -1,3 +1,6 @@
 <h1>API Practice</h1>
 
 <button (click)="getPokemon()">Get Pokemon</button>
+<div *ngFor="let pm of pokemon">
+  {{ pm.name }}
+</div>
