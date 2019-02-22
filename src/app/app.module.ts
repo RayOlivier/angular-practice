@@ -15,6 +15,10 @@ import { ToDoListComponent } from "./to-do-list/to-do-list.component";
 import { NgReduxModule, NgRedux } from "@angular-redux/store"; // <- New
 import { IAppState, rootReducer, INITIAL_STATE } from "./../store";
 import { ToDoListActions } from "./app.actions";
+import thunk from "redux-thunk";
+import { AsyncComponentComponent } from "./async-component/async-component.component";
+
+import { store } from "../store";
 
 @NgModule({
   declarations: [
@@ -23,7 +27,8 @@ import { ToDoListActions } from "./app.actions";
     PostsComponent,
     UsersComponent,
     DetailsComponent,
-    ToDoListComponent
+    ToDoListComponent,
+    AsyncComponentComponent
   ],
   imports: [
     BrowserModule,
@@ -37,9 +42,10 @@ import { ToDoListActions } from "./app.actions";
 })
 export class AppModule {
   constructor(ngRedux: NgRedux<IAppState>) {
+    ngRedux.provideStore(store);
     // Tell @angular-redux/store about our rootReducer and our initial state.
     // It will use this to create a redux store for us and wire up all the
     // events.
-    ngRedux.configureStore(rootReducer, INITIAL_STATE);
+    // ngRedux.configureStore(store, INITIAL_STATE);
   }
 }
